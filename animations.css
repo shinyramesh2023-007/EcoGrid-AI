@@ -1,0 +1,201 @@
+/* =========================================================
+   EcoGrid AI — animations.css
+   Premium enhancement layer only. Does NOT touch layout,
+   spacing, typography or color tokens defined in style.css.
+   Everything here animates transform/opacity (GPU-friendly)
+   except the flow-dash stroke animation, which is a thin
+   SVG stroke-dasharray offset (paint-only, not a reflow).
+   All animations respect prefers-reduced-motion and pause
+   automatically when the tab is not visible (see animations.js).
+   ========================================================= */
+
+/* Global pause switch — animations.js toggles this class on
+   <body> on visibilitychange so nothing burns CPU/battery in
+   a background tab. */
+body.eg-anim-paused * {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eg-nav-logo,
+  .eg-nav-logo *,
+  .energy-diagram,
+  .energy-diagram *,
+  .stat-mini-card {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ---------------------------------------------------------
+   1. NAVBAR LOGO — entrance + glow + hover
+   --------------------------------------------------------- */
+.eg-nav-logo{
+  display:inline-flex;align-items:center;
+  opacity:0;
+  transform:translateX(-14px);
+  animation: eg-logo-slide-in .7s cubic-bezier(.16,1,.3,1) .05s forwards;
+}
+.eg-nav-logo .eg-logo-mark{
+  display:inline-flex;
+  transform-origin:50% 55%;
+  transition:transform .35s cubic-bezier(.16,1,.3,1), filter .35s ease;
+}
+.eg-nav-logo:hover .eg-logo-mark,
+.eg-nav-logo:focus-visible .eg-logo-mark{
+  transform:scale(1.05);
+  filter:drop-shadow(0 0 8px rgba(13,180,138,.45));
+}
+.eg-nav-logo .eg-logo-mark svg{ opacity:0; animation: eg-mark-fade .6s ease .15s forwards; }
+.eg-nav-logo .brand-text{
+  display:inline-flex;
+  opacity:0;
+  transform:translateX(-8px);
+  animation: eg-text-slide .6s cubic-bezier(.16,1,.3,1) .25s forwards;
+}
+.eg-nav-logo .brand-ai{
+  animation: eg-ai-glow 3.2s ease-in-out 1s infinite;
+}
+@keyframes eg-logo-slide-in{ to{ opacity:1; transform:translateX(0); } }
+@keyframes eg-mark-fade{ to{ opacity:1; } }
+@keyframes eg-text-slide{ to{ opacity:1; transform:translateX(0); } }
+@keyframes eg-ai-glow{
+  0%,100%{ text-shadow:0 0 0 rgba(21,101,192,0); }
+  50%{ text-shadow:0 0 10px rgba(21,101,192,.55); }
+}
+
+/* ---------------------------------------------------------
+   2. MISSION / VISION CARDS — hover lift only (no new markup)
+   --------------------------------------------------------- */
+.mini-card{
+  transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease, border-color .3s ease;
+}
+.mini-card:hover{
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(0,200,83,.3);
+}
+
+/* ---------------------------------------------------------
+   3. ENERGY DIAGRAM — new "Why We Exist" illustration
+   --------------------------------------------------------- */
+
+/* -- source node cards (solar / wind / tidal) -- */
+.energy-node{
+  position:relative;
+  display:flex; align-items:center; gap:14px;
+  padding:14px 16px;
+  animation: eg-node-float 6s ease-in-out infinite;
+}
+.energy-node.node-solar{ animation-delay:0s; }
+.energy-node.node-wind{ animation-delay:.4s; }
+.energy-node.node-tidal{ animation-delay:.8s; }
+@keyframes eg-node-float{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-5px); }
+}
+.energy-node .node-icon{ width:56px; height:56px; flex:none; }
+.energy-node .node-label{ font-size:.7rem; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint); font-family:'JetBrains Mono',monospace; }
+.energy-node .node-title{ font-size:.95rem; color:var(--ink-muted); margin-top:2px; }
+.energy-node .node-value{ font-family:'JetBrains Mono',monospace; font-weight:600; color:var(--green-deep); margin-top:4px; }
+
+/* Sun */
+.sun-core{ transform-origin:50% 50%; animation: eg-sun-spin 18s linear infinite; }
+.sun-ray{ transform-origin:50% 50%; animation: eg-ray-pulse 2.4s ease-in-out infinite; }
+@keyframes eg-sun-spin{ to{ transform:rotate(360deg); } }
+@keyframes eg-ray-pulse{ 0%,100%{ opacity:.45; } 50%{ opacity:1; } }
+/* light sweep across solar panel */
+.panel-reflection{ animation: eg-panel-sweep 3.2s ease-in-out infinite; }
+@keyframes eg-panel-sweep{
+  0%{ transform:translateX(-40px); opacity:0; }
+  15%{ opacity:.9; }
+  55%{ opacity:.9; }
+  100%{ transform:translateX(40px); opacity:0; }
+}
+
+/* Wind turbine */
+.turbine-blades{ transform-origin:44px 30px; animation: eg-blade-spin 4s linear infinite; }
+@keyframes eg-blade-spin{ to{ transform:rotate(360deg); } }
+.wind-particle{ animation: eg-wind-drift 3s linear infinite; }
+.wind-particle:nth-child(2){ animation-delay:.6s; }
+.wind-particle:nth-child(3){ animation-delay:1.2s; }
+@keyframes eg-wind-drift{
+  0%{ transform:translateX(0); opacity:0; }
+  20%{ opacity:.8; }
+  80%{ opacity:.5; }
+  100%{ transform:translateX(-22px); opacity:0; }
+}
+
+/* Tidal */
+.tidal-wave{ animation: eg-wave-move 2.6s ease-in-out infinite; }
+.tidal-wave.w2{ animation-delay:.4s; }
+@keyframes eg-wave-move{
+  0%,100%{ transform:translateX(0); }
+  50%{ transform:translateX(4px); }
+}
+.tidal-platform{ animation: eg-platform-bob 3.6s ease-in-out infinite; }
+@keyframes eg-platform-bob{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-3px); }
+}
+.tidal-turbine{ transform-origin:50% 50%; animation: eg-blade-spin 6s linear infinite; }
+
+/* -- connector paths (dotted energy flow) -- */
+.flow-svg{ position:absolute; inset:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+.flow-path{
+  fill:none; stroke-linecap:round;
+  stroke-dasharray:6 8;
+  animation: eg-flow-dash 1.1s linear infinite;
+}
+.flow-path.solar-path{ stroke:var(--green); }
+.flow-path.wind-path{ stroke:var(--blue); }
+.flow-path.tidal-path{ stroke:#29B6F6; }
+.flow-path.core-path{ stroke:var(--green-deep); }
+@keyframes eg-flow-dash{ to{ stroke-dashoffset:-28; } }
+
+/* -- Industrial plant -- */
+.plant-card{ position:relative; z-index:1; animation: eg-node-float 7s ease-in-out infinite; text-align:center; }
+.plant-smoke{ animation: eg-smoke-rise 4s ease-in-out infinite; }
+.plant-smoke.s2{ animation-delay:.8s; }
+.plant-smoke.s3{ animation-delay:1.6s; }
+@keyframes eg-smoke-rise{
+  0%{ transform:translateY(0) scale(1); opacity:.5; }
+  100%{ transform:translateY(-18px) scale(1.6); opacity:0; }
+}
+.plant-status-dot{ animation: eg-status-blink 1.8s ease-in-out infinite; }
+@keyframes eg-status-blink{ 0%,100%{ opacity:1; } 50%{ opacity:.3; } }
+.plant-green-icon{ filter:drop-shadow(0 0 0 rgba(0,200,83,0)); animation: eg-green-glow 2.6s ease-in-out infinite; }
+@keyframes eg-green-glow{
+  0%,100%{ filter:drop-shadow(0 0 0 rgba(0,200,83,0)); }
+  50%{ filter:drop-shadow(0 0 6px rgba(0,200,83,.6)); }
+}
+
+/* -- AI Cloud -- */
+.ai-cloud-wrap{ position:relative; z-index:1; text-align:center; animation: eg-cloud-float 6.5s ease-in-out infinite; }
+@keyframes eg-cloud-float{
+  0%,100%{ transform:translateY(0); }
+  50%{ transform:translateY(-7px); }
+}
+.ai-cloud-shape{ animation: eg-cloud-breathe 4.5s ease-in-out infinite; transform-origin:50% 50%; }
+@keyframes eg-cloud-breathe{
+  0%,100%{ transform:scale(1); }
+  50%{ transform:scale(1.035); }
+}
+.ai-chip{ animation: eg-chip-pulse 3s ease-in-out infinite; transform-origin:50% 50%; }
+@keyframes eg-chip-pulse{
+  0%,100%{ filter:drop-shadow(0 0 2px rgba(21,101,192,.5)); }
+  50%{ filter:drop-shadow(0 0 10px rgba(21,101,192,.85)); }
+}
+
+/* -- Stat mini cards beside AI Core -- */
+.stat-mini-card{
+  transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s ease;
+}
+.stat-mini-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lift); }
+.stat-mini-icon{ animation: eg-node-float 5s ease-in-out infinite; }
+
+/* Responsive: simplify motion range on small screens */
+@media (max-width:640px){
+  .energy-node{ animation-duration:5s; }
+  .plant-card, .ai-cloud-wrap{ animation-duration:5s; }
+}
