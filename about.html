@@ -1,0 +1,273 @@
+{% extends "base.html" %}
+{% block title %}About — EcoGrid AI{% endblock %}
+{% block description %}EcoGrid AI's mission, vision and how the platform turns machine data into energy savings.{% endblock %}
+{% set active_page = 'about' %}
+
+{% block content %}
+<!-- ===== PAGE HEADER ===== -->
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g1"></div><div class="mesh-blob g2"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> About Us</div>
+    <h1 class="page-h1">Every factory leaks power. We help you find it.</h1>
+    <p class="page-lead">Most MSMEs lose 15–30% of their electricity spend to idle machines, aging motors and undetected faults — because nobody can see energy use at the machine level, in real time.</p>
+  </div>
+</header>
+
+<!-- ===== MISSION / VISION ===== -->
+<section>
+  <div class="container about-grid">
+    <div class="reveal">
+      <div class="section-tag">Why We Exist</div>
+      <h2 class="section-h2">Industrial energy intelligence, built for MSMEs</h2>
+      <p class="section-lead" style="margin-top:14px;">EcoGrid AI combines low-cost IoT sensors, cloud analytics and predictive machine-learning models to give plant owners a live, machine-by-machine view of consumption — and tell them exactly what to fix.</p>
+      <div class="mini-cards">
+        <div class="mini-card glass">
+          <i class="fa-solid fa-bullseye"></i>
+          <h4>Our Mission</h4>
+          <p>Make industrial energy intelligence affordable for every MSME, not just large enterprise plants.</p>
+        </div>
+        <div class="mini-card glass">
+          <i class="fa-solid fa-eye"></i>
+          <h4>Our Vision</h4>
+          <p>A future where every machine on the shop floor is monitored, predictable and sustainable.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal d1">
+      <div class="energy-diagram">
+        <svg class="flow-svg" viewBox="0 0 600 520" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <path class="flow-path solar-path" d="M215,70  C 340,70  340,170 400,215"/>
+          <path class="flow-path wind-path"  d="M215,255 C 320,255 340,240 400,250"/>
+          <path class="flow-path tidal-path" d="M215,440 C 340,440 340,320 400,285"/>
+          <path class="flow-path core-path"  d="M520,250 C 570,250 570,190 570,140"/>
+        </svg>
+
+        <div class="energy-col energy-col-left">
+          <div class="energy-node node-solar glass">
+            <svg class="node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <g class="sun-core">
+                <circle cx="14" cy="14" r="7" fill="#FFC107"/>
+                <g class="sun-ray" stroke="#FFC107" stroke-width="2" stroke-linecap="round">
+                  <line x1="14" y1="1" x2="14" y2="4"/><line x1="14" y1="24" x2="14" y2="27"/>
+                  <line x1="1" y1="14" x2="4" y2="14"/><line x1="24" y1="14" x2="27" y2="14"/>
+                </g>
+              </g>
+              <g transform="translate(6,30)">
+                <rect width="46" height="26" rx="3" fill="#1565C0" opacity=".14" stroke="#1565C0" stroke-width="1.4"/>
+                <line x1="0" y1="9" x2="46" y2="9" stroke="#1565C0" stroke-width="1"/>
+                <line x1="0" y1="18" x2="46" y2="18" stroke="#1565C0" stroke-width="1"/>
+                <line x1="15" y1="0" x2="15" y2="26" stroke="#1565C0" stroke-width="1"/>
+                <line x1="31" y1="0" x2="31" y2="26" stroke="#1565C0" stroke-width="1"/>
+                <rect class="panel-reflection" x="-14" y="0" width="14" height="26" fill="#fff" opacity="0"/>
+              </g>
+            </svg>
+            <div>
+              <div class="node-label">Solar Energy</div>
+              <div class="node-title">Absorbing sunlight</div>
+              <div class="node-value">4.28 kW</div>
+            </div>
+          </div>
+
+          <div class="energy-node node-wind glass">
+            <svg class="node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <g class="wind-particles"></g>
+              <line x1="44" y1="30" x2="44" y2="56" stroke="#5B6B7A" stroke-width="2"/>
+              <g class="turbine-blades" stroke="#1565C0" stroke-width="2.4" stroke-linecap="round">
+                <line x1="44" y1="30" x2="44" y2="10"/>
+                <line x1="44" y1="30" x2="60" y2="38"/>
+                <line x1="44" y1="30" x2="30" y2="42"/>
+              </g>
+              <circle cx="44" cy="30" r="2.4" fill="#1565C0"/>
+            </svg>
+            <div>
+              <div class="node-label">Wind Energy</div>
+              <div class="node-title">Capturing wind power</div>
+              <div class="node-value">3.76 kW</div>
+            </div>
+          </div>
+
+          <div class="energy-node node-tidal glass">
+            <svg class="node-icon" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+              <rect x="4" y="30" width="52" height="22" rx="4" fill="#29B6F6" opacity=".18"/>
+              <path class="tidal-wave w1" d="M4,32 Q14,27 24,32 T44,32 T56,32" fill="none" stroke="#29B6F6" stroke-width="2"/>
+              <path class="tidal-wave w2" d="M4,38 Q14,34 24,38 T44,38 T56,38" fill="none" stroke="#1565C0" stroke-width="1.6" opacity=".7"/>
+              <g class="tidal-platform">
+                <line x1="30" y1="14" x2="30" y2="30" stroke="#5B6B7A" stroke-width="2"/>
+                <rect x="20" y="8" width="20" height="6" rx="2" fill="#5B6B7A"/>
+                <g class="tidal-turbine" transform="translate(30,30)" stroke="#0D47A1" stroke-width="2" stroke-linecap="round">
+                  <line x1="0" y1="0" x2="0" y2="8"/>
+                  <line x1="0" y1="0" x2="7" y2="-4"/>
+                  <line x1="0" y1="0" x2="-7" y2="-4"/>
+                </g>
+              </g>
+            </svg>
+            <div>
+              <div class="node-label">Tidal Energy</div>
+              <div class="node-title">Harnessing ocean tides</div>
+              <div class="node-value">2.91 kW</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-col energy-col-mid">
+          <div class="plant-card glass">
+            <svg viewBox="0 0 90 70" width="78" height="60" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto;">
+              <rect x="10" y="34" width="70" height="30" fill="#5B6B7A" opacity=".16"/>
+              <rect x="18" y="14" width="10" height="20" fill="#5B6B7A"/>
+              <rect x="34" y="8" width="10" height="26" fill="#5B6B7A"/>
+              <rect x="50" y="18" width="10" height="16" fill="#5B6B7A"/>
+              <circle class="plant-smoke s1" cx="23" cy="10" r="3" fill="#C6CDD3"/>
+              <circle class="plant-smoke s2" cx="39" cy="4" r="3" fill="#C6CDD3"/>
+              <circle class="plant-smoke s3" cx="55" cy="14" r="3" fill="#C6CDD3"/>
+              <rect x="10" y="34" width="70" height="30" fill="none" stroke="#0B1220" stroke-opacity=".15"/>
+              <circle class="plant-green-icon" cx="70" cy="46" r="5" fill="#00C853"/>
+            </svg>
+            <div class="node-label">Industrial Plant</div>
+            <div class="node-title" style="margin-bottom:8px;">Real-time Monitoring</div>
+            <span class="badge" style="display:inline-flex;align-items:center;gap:6px;font-size:.72rem;color:var(--green-deep);">
+              <span class="plant-status-dot" style="width:7px;height:7px;border-radius:50%;background:var(--green);display:inline-block;"></span>
+              System Healthy
+            </span>
+          </div>
+        </div>
+
+        <div class="energy-col energy-col-right">
+          <div class="ai-cloud-wrap">
+            <svg viewBox="0 0 90 70" width="76" height="58" xmlns="http://www.w3.org/2000/svg" style="margin:0 auto;">
+              <path class="ai-cloud-shape" d="M22,50 a14,14 0 0 1 3,-27 a17,17 0 0 1 33,-4 a13,13 0 0 1 -2,31 Z" fill="#fff" stroke="#00C853" stroke-width="2"/>
+              <rect class="ai-chip" x="36" y="26" width="18" height="18" rx="3" fill="#1565C0"/>
+              <text x="45" y="38" text-anchor="middle" font-family="JetBrains Mono" font-size="9" fill="#fff">AI</text>
+            </svg>
+            <div class="node-label">AI Core</div>
+            <div class="node-title">Intelligent Optimization</div>
+          </div>
+
+          <div class="stat-mini-card glass">
+            <i class="fa-solid fa-bolt stat-mini-icon" style="color:var(--green-deep);"></i>
+            <div class="node-title">Energy Efficiency</div>
+            <div class="node-value">↑ <span data-count="18.6" data-suffix="%" data-decimal="1">0</span></div>
+          </div>
+          <div class="stat-mini-card glass">
+            <i class="fa-solid fa-indian-rupee-sign stat-mini-icon" style="color:var(--green-deep);"></i>
+            <div class="node-title">Cost Savings</div>
+            <div class="node-value">↑ ₹<span data-count="2.45" data-suffix="L/mo" data-decimal="2">0</span></div>
+          </div>
+          <div class="stat-mini-card glass">
+            <i class="fa-solid fa-leaf stat-mini-icon" style="color:var(--green-deep);"></i>
+            <div class="node-title">CO<sub>2</sub> Reduced</div>
+            <div class="node-value">↑ <span data-count="3.24" data-suffix=" ton/mo" data-decimal="2">0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUICK CAPABILITIES STRIP ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="benefit-grid reveal">
+      <div class="benefit-item glass"><i class="fa-solid fa-bolt"></i><span>Real-time Monitoring</span></div>
+      <div class="benefit-item glass"><i class="fa-solid fa-microchip"></i><span>AI Predictions</span></div>
+      <div class="benefit-item glass"><i class="fa-solid fa-bell"></i><span>Smart Alerts</span></div>
+      <div class="benefit-item glass"><i class="fa-solid fa-shield-halved"></i><span>Cost Optimization</span></div>
+      <div class="benefit-item glass"><i class="fa-solid fa-leaf"></i><span>Sustainability</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS (full timeline) ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">How It Works</div>
+      <h2 class="section-h2">From sensor to savings, in seven steps</h2>
+    </div>
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">01</div>
+        <div class="timeline-body"><h4>IoT Sensors Collect Data</h4><p>Clamp-on current sensors and smart meters attach to machines with zero downtime.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">02</div>
+        <div class="timeline-body"><h4>Cloud Stores Information</h4><p>Readings stream securely to EcoGrid's cloud in near real time.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">03</div>
+        <div class="timeline-body"><h4>AI Analyzes Data</h4><p>Models trained on industrial load patterns detect anomalies and trends.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">04</div>
+        <div class="timeline-body"><h4>Predictive Engine Generates Insights</h4><p>Failure risk, waste sources and savings opportunities are ranked automatically.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">05</div>
+        <div class="timeline-body"><h4>Dashboard Displays Reports</h4><p>Plant managers see everything on one live, mobile-friendly dashboard.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">06</div>
+        <div class="timeline-body"><h4>Admin Receives Alerts</h4><p>Critical events are pushed instantly, before they become costly failures.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">07</div>
+        <div class="timeline-body"><h4>Industry Saves Energy</h4><p>Lower bills, longer machine life, and a measurable drop in carbon footprint.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ACHIEVEMENTS ===== -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Achievements</div>
+      <h2 class="section-h2">Milestones so far</h2>
+    </div>
+    <div class="hero-stats" style="margin-top:36px;border:none;padding-top:0;">
+      <div><div class="stat-num" data-count="500" data-suffix="+">0</div><div class="stat-label">MSMEs Onboarded</div></div>
+      <div><div class="stat-num" data-count="40" data-suffix="%">0</div><div class="stat-label">Avg. Energy Savings</div></div>
+      <div><div class="stat-num" data-count="12" data-suffix="k">0</div><div class="stat-label">Machines Monitored</div></div>
+      <div><div class="stat-num" data-count="3" data-suffix=" states">0</div><div class="stat-label">India Coverage</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CORE VALUES / TEAM ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Our Team</div>
+      <h2 class="section-h2">Built by engineers who've run a shop floor</h2>
+    </div>
+    <div class="benefit-grid" style="margin-top:36px;">
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-microchip"></i><span>IoT &amp; Hardware</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-brain"></i><span>AI / ML Research</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-cloud"></i><span>Cloud &amp; Platform</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-chart-line"></i><span>Energy Domain Experts</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BENEFITS ===== -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Why EcoGrid</div>
+      <h2 class="section-h2">Built to pay for itself in one billing cycle</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-indian-rupee-sign"></i><span>Reduce electricity bills</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-gears"></i><span>Increase machine life</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-smog"></i><span>Lower carbon emissions</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-arrow-trend-up"></i><span>Improve productivity</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-triangle-exclamation"></i><span>Predict equipment failures</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-sun"></i><span>Support renewable energy</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-screwdriver-wrench"></i><span>Easy installation</span></div>
+      <div class="benefit-item glass reveal"><i class="fa-solid fa-tower-broadcast"></i><span>Real-time monitoring</span></div>
+    </div>
+  </div>
+</section>
+{% endblock %}

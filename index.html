@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% block title %}EcoGrid AI — AI-Powered Energy Intelligence{% endblock %}
+{% block description %}EcoGrid AI transforms industrial energy management with AI, IoT and predictive analytics.{% endblock %}
+{% set active_page = 'home' %}
+
+{% block content %}
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="mesh-bg">
+    <div class="mesh-blob g1"></div>
+    <div class="mesh-blob g2"></div>
+    <div class="mesh-blob g3"></div>
+  </div>
+
+  <div class="container hero-grid">
+
+    <!-- LEFT CONTENT -->
+    <div class="reveal">
+
+      <div class="eyebrow">
+        <span class="dot"></span>
+        Live grid intelligence for industrial power
+      </div>
+
+      <h1 class="hero-h1">
+        AI-Powered
+        <span style="color:var(--green-deep)">Energy</span>
+        Intelligence
+      </h1>
+
+      <p class="hero-lead">
+        Transform industrial energy management with artificial intelligence,
+        IoT and predictive analytics — built for manufacturers who can't
+        afford to guess.
+      </p>
+
+      <div class="hero-actions">
+        <a href="{{ url_for('main.features') }}" class="btn btn-primary">
+          Explore Platform
+          <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+        <a href="{{ url_for('main.contact') }}" class="btn btn-outline">
+          Book Demo
+        </a>
+
+        <button class="btn btn-text" id="watchVideoBtn">
+          <i class="fa-solid fa-circle-play"></i>
+          Watch Video
+        </button>
+      </div>
+
+      <div class="hero-stats">
+
+        <div>
+          <div class="stat-num" data-count="98" data-suffix="%">0</div>
+          <div class="stat-label">AI Accuracy</div>
+        </div>
+
+        <div>
+          <div class="stat-num" data-count="40" data-suffix="%">0</div>
+          <div class="stat-label">Energy Saving</div>
+        </div>
+
+        <div>
+          <div class="stat-num" data-count="500" data-suffix="+">0</div>
+          <div class="stat-label">Industries</div>
+        </div>
+
+        <div>
+          <div
+            class="stat-num"
+            data-count="99.9"
+            data-suffix="%"
+            data-decimal="1"
+          >
+            0
+          </div>
+          <div class="stat-label">Availability</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- RIGHT DASHBOARD -->
+    <div class="hero-art reveal d1">
+
+      <div class="dashboard-card glass">
+
+        <div class="dashboard-header">
+          <span>⚡ LIVE GRID STATUS</span>
+          <span class="live-dot"></span>
+        </div>
+
+        <div class="dashboard-power">
+          184.6 <small>kW</small>
+        </div>
+
+        <div class="dashboard-bars">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+
+        <div class="dashboard-row">
+
+          <div class="metric-box">
+            <div class="metric-title">AI Score</div>
+            <div class="metric-value">96.2%</div>
+            <div class="metric-green">Excellent</div>
+          </div>
+
+          <div class="metric-box">
+            <div class="metric-title">Energy Saved</div>
+            <div class="metric-value">40%</div>
+            <div class="metric-green">Monthly</div>
+          </div>
+
+        </div>
+
+        <div class="flow">
+          <span>⚡</span>
+          <div class="flow-line"></div>
+          <span>🧠</span>
+          <div class="flow-line"></div>
+          <span>🏭</span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ===== TRUSTED PARTNERS ===== -->
+<section style="padding:36px 0 0;">
+  <div class="container reveal">
+    <p style="text-align:center;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:10px;">Trusted by manufacturers across India</p>
+    <div class="partner-row">
+      <span>Aravind Textiles</span><span>Kochi Steelworks</span><span>Bharat Auto Components</span><span>Sundaram Plastics</span><span>Vertex Foundry</span>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HIGHLIGHTS ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Platform</div>
+      <h2 class="section-h2">Three problems, one platform</h2>
+      <p class="section-lead">The features your plant needed most — see the full list on the Features page.</p>
+    </div>
+    <div class="highlight-grid">
+      <div class="highlight-card glass glow-border reveal">
+        <div class="highlight-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Real-Time Monitoring</h3>
+        <p>Machine-level power readings updated every few seconds, not once a month on a bill.</p>
+      </div>
+      <div class="highlight-card glass glow-border reveal d1">
+        <div class="highlight-icon"><i class="fa-solid fa-gears"></i></div>
+        <h3>Predictive Maintenance</h3>
+        <p>Vibration and load signatures flag failing motors weeks before breakdown.</p>
+      </div>
+      <div class="highlight-card glass glow-border reveal d2">
+        <div class="highlight-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Carbon Tracking</h3>
+        <p>Automatic kWh-to-CO₂e conversion, ready for ESG and compliance reporting.</p>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:36px;text-align:center;">
+      <a href="{{ url_for('main.features') }}" class="btn btn-outline">View All Features <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROCESS STRIP ===== -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Process</div>
+      <h2 class="section-h2">From sensor to savings</h2>
+      <p class="section-lead">The full seven-step breakdown lives on the About page — here's the short version.</p>
+    </div>
+    <div class="process-strip">
+      <div class="process-step reveal"><div class="process-num">01</div><h4>Sense</h4><p>IoT sensors clamp onto every machine</p></div>
+      <div class="process-step reveal d1"><div class="process-num">02</div><h4>Analyze</h4><p>AI models detect waste and anomalies</p></div>
+      <div class="process-step reveal d2"><div class="process-num">03</div><h4>Predict</h4><p>Failures flagged weeks in advance</p></div>
+      <div class="process-step reveal d3"><div class="process-num">04</div><h4>Save</h4><p>Plain-language actions, ranked by impact</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DASHBOARD PREVIEW ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Live Preview</div>
+      <h2 class="section-h2">Your plant, on one screen</h2>
+      <p class="section-lead">A working preview of the dashboard your team sees every morning.</p>
+    </div>
+    <div class="reveal" style="margin-top:36px;text-align:center;">
+      <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">Open Live Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Testimonials</div>
+      <h2 class="section-h2">What plant managers are saying</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card glass glow-border reveal">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="testi-quote">"We found a compressor running idle for hours every night — nobody had noticed for a year. Paid for itself in six weeks."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">RK</div>
+          <div><div class="testi-name">Ravi Kumar</div><div class="testi-role">Plant Manager, Kochi Steelworks</div></div>
+        </div>
+      </div>
+      <div class="testi-card glass glow-border reveal d1">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+        <p class="testi-quote">"The predictive alert on our motor bearing gave us two weeks' notice. That's a scheduled repair instead of an emergency shutdown."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">SN</div>
+          <div><div class="testi-name">Sunitha Nair</div><div class="testi-role">Ops Head, Sundaram Plastics</div></div>
+        </div>
+      </div>
+      <div class="testi-card glass glow-border reveal d2">
+        <div class="testi-stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+        <p class="testi-quote">"Our ESG reporting used to take a week of spreadsheet work. Now the carbon numbers are just there, ready to export."</p>
+        <div class="testi-person">
+          <div class="testi-avatar">AM</div>
+          <div><div class="testi-name">Arjun Menon</div><div class="testi-role">Director, Bharat Auto Components</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal" style="text-align:center;">
+      <div class="section-tag">FAQ</div>
+      <h2 class="section-h2">Common questions</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">How long does installation take? <i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Most pilots go live in under a week. Clamp-on sensors attach without rewiring or downtime, and the dashboard is live within hours of the first sensor connecting.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does this work with our existing machines? <i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Yes. EcoGrid AI's sensors are hardware-agnostic and clamp onto existing power lines — no need to replace or modify your machines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How accurate are the AI predictions? <i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Our predictive maintenance models currently run at roughly 95-98% accuracy on the plant data we've deployed against, and improve over time as more data is collected from your specific machines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I export reports for compliance/ESG use? <i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>Yes — daily, weekly and monthly reports covering energy usage, carbon emissions and machine health can be downloaded as PDF or CSV directly from the dashboard.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my plant data secure? <i class="fa-solid fa-plus"></i></button>
+        <div class="faq-a"><p>All data is encrypted in transit and at rest, access is role-based, and we never share plant-level data with third parties. See our Privacy Policy for full details.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section>
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>See your plant's live dashboard in 15 minutes.</h2>
+        <p>Request a demo and we'll set up a pilot on a small number of machines — no commitment required.</p>
+      </div>
+      <a href="{{ url_for('main.contact') }}" class="btn btn-primary">Book Demo <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

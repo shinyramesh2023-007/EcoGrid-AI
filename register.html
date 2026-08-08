@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Create Account — EcoGrid AI{% endblock %}
+{% block description %}Create your EcoGrid AI account.{% endblock %}
+{% set active_page = 'register' %}
+
+{% block content %}
+<section class="hero" style="padding-bottom:0;">
+  <div class="mesh-bg"><div class="mesh-blob g2"></div><div class="mesh-blob g3"></div></div>
+  <div class="container auth-wrap">
+    <div class="auth-card glass reveal">
+      <div class="auth-head">
+        <div class="eyebrow" style="margin-bottom:14px;"><span class="dot"></span> Get started</div>
+        <h1>Create your account</h1>
+        <p>Set up your plant profile and start monitoring in minutes.</p>
+      </div>
+
+      <form class="auth-form" id="registerForm" method="POST" action="{{ url_for('auth.register') }}" novalidate>
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+          <label for="regFullName">Full Name</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-user leading"></i>
+            {{ form.full_name(id="regFullName", placeholder="Your full name", class_="invalid" if form.full_name.errors else "") }}
+          </div>
+          <span class="field-error{% if form.full_name.errors %} show{% endif %}">{{ form.full_name.errors[0] if form.full_name.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="regCompany">Company</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-building leading"></i>
+            {{ form.company(id="regCompany", placeholder="Company name (optional)") }}
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="regEmail">Email</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-envelope leading"></i>
+            {{ form.email(id="regEmail", placeholder="you@company.com", class_="invalid" if form.email.errors else "") }}
+          </div>
+          <span class="field-error{% if form.email.errors %} show{% endif %}">{{ form.email.errors[0] if form.email.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="regPhone">Phone</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-phone leading"></i>
+            {{ form.phone(id="regPhone", placeholder="+91 00000 00000 (optional)", class_="invalid" if form.phone.errors else "") }}
+          </div>
+          <span class="field-error{% if form.phone.errors %} show{% endif %}">{{ form.phone.errors[0] if form.phone.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="regPassword">Password</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-lock leading"></i>
+            {{ form.password(id="regPassword", placeholder="At least 8 characters", class_="invalid" if form.password.errors else "") }}
+            <button type="button" class="toggle-pass" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <div class="pw-strength"><div class="pw-strength-bar" id="pwStrengthBar"></div></div>
+          <span class="pw-strength-label" id="pwStrengthLabel">Enter a password</span>
+          <span class="field-error{% if form.password.errors %} show{% endif %}">{{ form.password.errors[0] if form.password.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="regConfirmPassword">Confirm Password</label>
+          <div class="auth-input-wrap">
+            <i class="fa-solid fa-lock leading"></i>
+            {{ form.confirm_password(id="regConfirmPassword", placeholder="Re-enter password", class_="invalid" if form.confirm_password.errors else "") }}
+            <button type="button" class="toggle-pass" tabindex="-1"><i class="fa-solid fa-eye"></i></button>
+          </div>
+          <span class="field-error{% if form.confirm_password.errors %} show{% endif %}">{{ form.confirm_password.errors[0] if form.confirm_password.errors }}</span>
+        </div>
+        <div class="auth-row-between">
+          <label class="remember-row">{{ form.terms(id="regTerms") }} I agree to the <a href="{{ url_for('main.terms') }}" target="_blank">Terms of Service</a></label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+          Create Account <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <p class="auth-footer-text">Already have an account? <a href="{{ url_for('auth.login') }}">Log in</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}

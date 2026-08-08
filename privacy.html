@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Privacy Policy — EcoGrid AI{% endblock %}
+{% block description %}How EcoGrid AI collects, uses and protects your data.{% endblock %}
+{% set active_page = 'privacy' %}
+
+{% block content %}
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g1"></div><div class="mesh-blob g2"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Legal</div>
+    <h1 class="page-h1">Privacy Policy</h1>
+    <p class="page-lead">How we collect, use, and protect information across the EcoGrid AI platform.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container legal-content reveal">
+    <span class="legal-updated">Last updated: January 2026</span>
+
+    <h2>1. Information We Collect</h2>
+    <p>When you use EcoGrid AI, we may collect: account information (name, email, company, phone) provided at registration; plant and machine data collected through IoT sensors you connect to the platform; and usage data such as pages visited and dashboard interactions.</p>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use collected data to operate and improve the platform, generate energy and maintenance insights, respond to support and contact requests, and send account-related communications. We do not sell your plant data to third parties.</p>
+
+    <h2>3. Data Storage &amp; Security</h2>
+    <p>Passwords are hashed using industry-standard algorithms and never stored in plain text. Data in transit is encrypted, and access to plant-level data is restricted to authenticated accounts associated with that plant.</p>
+
+    <h2>4. Cookies</h2>
+    <p>We use essential cookies for session management (keeping you logged in) and a local preference for dark/light mode. We do not use third-party advertising cookies.</p>
+
+    <h2>5. Data Retention</h2>
+    <p>Account and energy data are retained for as long as your account is active. You may request deletion of your account and associated data at any time by contacting us.</p>
+
+    <h2>6. Your Rights</h2>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your account and data</li>
+      <li>Export your energy usage and reports</li>
+    </ul>
+
+    <h2>7. Contact</h2>
+    <p>Questions about this policy can be sent to <strong>hello@ecogrid.ai</strong> or via the <a href="{{ url_for('main.contact') }}">Contact page</a>.</p>
+  </div>
+</section>
+{% endblock %}

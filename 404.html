@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Page Not Found — EcoGrid AI{% endblock %}
+{% set active_page = '' %}
+
+{% block content %}
+<section>
+  <div class="container">
+    <div class="error-wrap reveal">
+      <div class="error-code">404</div>
+      <h2>This page has gone off-grid.</h2>
+      <p>The page you're looking for doesn't exist, moved, or the URL was typed incorrectly.</p>
+      <a href="{{ url_for('main.index') }}" class="btn btn-primary">Back to Home <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endblock %}

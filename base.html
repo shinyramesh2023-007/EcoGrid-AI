@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}EcoGrid AI — AI-Powered Energy Intelligence{% endblock %}</title>
+<meta name="description" content="{% block description %}EcoGrid AI transforms industrial energy management with AI, IoT and predictive analytics.{% endblock %}">
+<meta property="og:title" content="{% block og_title %}EcoGrid AI{% endblock %}">
+<meta property="og:description" content="{% block og_description %}AI-powered energy optimization platform for MSMEs.{% endblock %}">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/animations.css') }}">
+{% block head_extra %}{% endblock %}
+</head>
+<body>
+<a href="#mainContent" class="skip-link">Skip to main content</a>
+
+<!-- ===== NAV ===== -->
+<header class="site-nav" id="siteNav">
+  <div class="container nav-inner">
+    <a class="brand eg-nav-logo" href="{{ url_for('main.index') }}">
+      <span class="brand-mark eg-logo-mark">
+        <svg width="26" height="26" viewBox="0 0 30 30">
+          <defs>
+            <linearGradient id="navLeafGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#0DB48A"/>
+              <stop offset="100%" stop-color="#1194C3"/>
+            </linearGradient>
+          </defs>
+          <path d="M15 2 L4 16 L14 16 L12 28 L26 12 L16 12 Z" fill="url(#navLeafGradient)"/>
+        </svg>
+      </span>
+      <span class="brand-text">EcoGrid<span class="brand-ai">AI</span></span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="{{ url_for('main.index') }}" class="{{ 'active' if active_page=='home' }}">Home</a></li>
+      <li><a href="{{ url_for('main.about') }}" class="{{ 'active' if active_page=='about' }}">About</a></li>
+      <li><a href="{{ url_for('main.features') }}" class="{{ 'active' if active_page=='features' }}">Features</a></li>
+      <li><a href="{{ url_for('dashboard.index') }}" class="{{ 'active' if active_page=='dashboard' }}">Dashboard</a></li>
+      <li><a href="{{ url_for('main.technologies') }}" class="{{ 'active' if active_page=='technologies' }}">Technologies</a></li>
+      {% if current_user is defined and current_user.is_authenticated %}
+      <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+      {% else %}
+      <li><a href="{{ url_for('auth.login') }}" class="{{ 'active' if active_page=='login' }}">Login</a></li>
+      {% endif %}
+      <li><a href="{{ url_for('main.contact') }}" class="nav-cta {{ 'active' if active_page=='contact' }}">Contact</a></li>
+      <li>
+        <button class="cmdk-trigger" type="button" aria-label="Open command palette">
+          <i class="fa-solid fa-magnifying-glass"></i> Search <kbd>Ctrl K</kbd>
+        </button>
+      </li>
+      <li class="notif-wrap">
+        <button class="notif-btn" id="notifBtn" type="button" aria-label="Notifications">
+          <i class="fa-solid fa-bell"></i><span class="notif-dot"></span>
+        </button>
+        <div class="notif-panel" id="notifPanel">
+          <div class="notif-head">AI Alerts <span>3 new</span></div>
+          <div class="notif-list">
+            <div class="notif-row"><i class="fa-solid fa-triangle-exclamation" style="color:#ff5f57"></i>
+              <div><strong>Motor Bay 2</strong><p>Vibration 34% above safe threshold.</p><span class="t">2 min ago</span></div></div>
+            <div class="notif-row"><i class="fa-solid fa-clock" style="color:var(--amber)"></i>
+              <div><strong>Compressor B</strong><p>Idle draw for 42 minutes, no load.</p><span class="t">18 min ago</span></div></div>
+            <div class="notif-row"><i class="fa-solid fa-bolt" style="color:#6FA8F0"></i>
+              <div><strong>Grid Peak Demand</strong><p>Approaching contracted limit 6–7pm.</p><span class="t">1 hr ago</span></div></div>
+          </div>
+        </div>
+      </li>
+      <li><button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" type="button">
+        <i class="fa-solid fa-moon"></i><i class="fa-solid fa-sun"></i>
+      </button></li>
+    </ul>
+  </div>
+</header>
+
+<script>
+  window.ECOGRID_ROUTES = [
+    { label: 'Home', url: "{{ url_for('main.index') }}", icon: 'fa-house', hint: 'Page' },
+    { label: 'About', url: "{{ url_for('main.about') }}", icon: 'fa-circle-info', hint: 'Page' },
+    { label: 'Features', url: "{{ url_for('main.features') }}", icon: 'fa-layer-group', hint: 'Page' },
+    { label: 'Dashboard', url: "{{ url_for('dashboard.index') }}", icon: 'fa-gauge-high', hint: 'App' },
+    { label: 'Technologies', url: "{{ url_for('main.technologies') }}", icon: 'fa-microchip', hint: 'Page' },
+    { label: 'Contact', url: "{{ url_for('main.contact') }}", icon: 'fa-envelope', hint: 'Page' },
+    {% if current_user is defined and current_user.is_authenticated %}
+    { label: 'Logout', url: "{{ url_for('auth.logout') }}", icon: 'fa-right-from-bracket', hint: 'Action' },
+    {% else %}
+    { label: 'Login', url: "{{ url_for('auth.login') }}", icon: 'fa-right-to-bracket', hint: 'Account' },
+    { label: 'Create Account', url: "{{ url_for('auth.register') }}", icon: 'fa-user-plus', hint: 'Account' },
+    {% endif %}
+    { label: 'Privacy Policy', url: "{{ url_for('main.privacy') }}", icon: 'fa-shield-halved', hint: 'Legal' },
+    { label: 'Terms of Service', url: "{{ url_for('main.terms') }}", icon: 'fa-file-contract', hint: 'Legal' }
+  ];
+</script>
+
+<span id="mainContent" tabindex="-1"></span>
+{% block content %}{% endblock %}
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <a href="{{ url_for('main.index') }}" class="footer-brand-name">
+        <span class="brand-mark" style="color:var(--green)"><svg width="24" height="24" viewBox="0 0 30 30"><path d="M15 2 L4 16 L14 16 L12 28 L26 12 L16 12 Z" fill="currentColor"/></svg></span>
+        EcoGrid<span style="color:#6FA8F0">AI</span>
+      </a>
+      <p class="footer-tag">Powering smarter industries with artificial intelligence.</p>
+    </div>
+    <div>
+      <h6>Quick Links</h6>
+      <div class="footer-links">
+        <a href="{{ url_for('main.about') }}">About</a>
+        <a href="{{ url_for('main.features') }}">Features</a>
+        <a href="{{ url_for('dashboard.index') }}">Dashboard</a>
+        <a href="{{ url_for('main.technologies') }}">Technologies</a>
+      </div>
+    </div>
+    <div>
+      <h6>Company</h6>
+      <div class="footer-links">
+        <a href="{{ url_for('main.contact') }}">Contact</a>
+        <a href="{{ url_for('main.privacy') }}">Privacy Policy</a>
+        <a href="{{ url_for('main.terms') }}">Terms of Service</a>
+        <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div>
+      <h6>Stay Updated</h6>
+      <form id="newsletterForm" class="newsletter-row" action="{{ url_for('main.newsletter') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="email" name="email" placeholder="you@company.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="container footer-bottom">&copy; {{ current_year }} EcoGrid AI. All rights reserved.</div>
+</footer>
+
+<button id="backToTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+<button class="fab" id="supportFab" aria-label="Chat with EcoGrid AI" type="button"
+  onclick="showToast('AI chat assistant is a demo placeholder in this build.', 'success')"
+  style="position:fixed;bottom:26px;left:26px;width:50px;height:50px;border-radius:50%;border:none;background:linear-gradient(135deg,var(--green),var(--blue));color:#fff;font-size:1.05rem;box-shadow:0 14px 30px -12px rgba(0,168,71,0.5);z-index:900;">
+  <i class="fa-solid fa-comment-dots"></i>
+</button>
+
+{% block scripts_pre %}{% endblock %}
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<script src="{{ url_for('static', filename='js/premium.js') }}"></script>
+<script src="{{ url_for('static', filename='js/animations.js') }}"></script>
+{% block scripts %}{% endblock %}
+
+<!-- Flash messages rendered as toasts -->
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var flashed = {{ messages|tojson }};
+      flashed.forEach(function (m) {
+        var category = m[0] === 'error' ? 'error' : 'success';
+        if (window.showToast) showToast(m[1], category);
+      });
+    });
+  </script>
+  {% endif %}
+{% endwith %}
+
+</body>
+</html>

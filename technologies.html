@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}Technologies — EcoGrid AI{% endblock %}
+{% block description %}The hardware, AI and cloud stack behind EcoGrid AI.{% endblock %}
+{% set active_page = 'technologies' %}
+
+{% block content %}
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g3"></div><div class="mesh-blob g2"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Under the Hood</div>
+    <h1 class="page-h1">The stack behind the dashboard</h1>
+    <p class="page-lead">From sensor hardware to the AI models that turn raw current readings into a savings plan.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="tech-grid">
+      <div class="tech-chip glass reveal"><i class="fa-brands fa-html5"></i><span>HTML5</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-brands fa-css3-alt"></i><span>CSS3</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-brands fa-js"></i><span>JavaScript</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-chart-line"></i><span>Chart.js</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-brands fa-python"></i><span>Python</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-flask"></i><span>Flask</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-network-wired"></i><span>TensorFlow</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-satellite-dish"></i><span>IoT Sensors</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-microchip"></i><span>ESP32</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-microchip"></i><span>NodeMCU</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-microchip"></i><span>Arduino</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-database"></i><span>MySQL</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-diagram-project"></i><span>REST API</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-cloud"></i><span>Cloud Hosting</span></div>
+      <div class="tech-chip glass reveal"><i class="fa-solid fa-shield-halved"></i><span>Encryption</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">Architecture</div>
+      <h2 class="section-h2">How data moves through the system</h2>
+    </div>
+    <div class="arch-flow">
+      <div class="arch-node glass reveal"><i class="fa-solid fa-microchip"></i><span>Sensor</span></div>
+      <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="arch-node glass reveal d1"><i class="fa-solid fa-wifi"></i><span>Gateway</span></div>
+      <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="arch-node glass reveal d2"><i class="fa-solid fa-cloud"></i><span>Cloud API</span></div>
+      <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="arch-node glass reveal d3"><i class="fa-solid fa-brain"></i><span>AI Engine</span></div>
+      <div class="arch-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+      <div class="arch-node glass reveal"><i class="fa-solid fa-desktop"></i><span>Dashboard</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORKFLOW (from uploaded architecture diagrams) ===== -->
+<section>
+  <div class="container">
+    <div class="reveal">
+      <div class="section-tag">System Workflow</div>
+      <h2 class="section-h2">Energy optimization process flow</h2>
+      <p class="section-lead">The decision loop the platform runs continuously, every cycle.</p>
+    </div>
+    <div class="timeline" style="margin-top:36px;">
+      <div class="timeline-line"></div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">01</div>
+        <div class="timeline-body"><h4>IoT sensors capture real-time data</h4><p>Solar, wind and grid supply readings stream in continuously.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">02</div>
+        <div class="timeline-body"><h4>Data sent to cloud for processing</h4><p>Secure ingestion into the EcoGrid cloud platform.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">03</div>
+        <div class="timeline-body"><h4>AI analytics engine predicts demand</h4><p>Usage patterns and renewable sufficiency are evaluated.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">04</div>
+        <div class="timeline-body"><h4>Smart grid switching</h4><p>Automatic transfer between renewable and grid supply based on the AI control signal.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">05</div>
+        <div class="timeline-body"><h4>AI recommendation engine</h4><p>Energy-saving actions are ranked and surfaced.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">06</div>
+        <div class="timeline-body"><h4>Dashboard &amp; alerts updated</h4><p>Reports and mobile alerts refresh automatically.</p></div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-num">07</div>
+        <div class="timeline-body"><h4>Carbon &amp; maintenance tracked</h4><p>Continuous monitoring loop feeds back into step one.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

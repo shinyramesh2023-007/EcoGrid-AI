@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Terms of Service — EcoGrid AI{% endblock %}
+{% block description %}The terms governing use of the EcoGrid AI platform.{% endblock %}
+{% set active_page = 'terms' %}
+
+{% block content %}
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g2"></div><div class="mesh-blob g3"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Legal</div>
+    <h1 class="page-h1">Terms of Service</h1>
+    <p class="page-lead">The terms that govern your use of the EcoGrid AI website and dashboard.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container legal-content reveal">
+    <span class="legal-updated">Last updated: January 2026</span>
+
+    <h2>1. Acceptance of Terms</h2>
+    <p>By creating an account or using the EcoGrid AI platform, you agree to be bound by these Terms of Service and our Privacy Policy.</p>
+
+    <h2>2. Description of Service</h2>
+    <p>EcoGrid AI provides an AI and IoT powered energy monitoring, predictive maintenance and carbon-tracking platform for industrial and MSME customers. Figures shown in demo mode (including the public dashboard preview) are illustrative unless your account is connected to live sensor hardware.</p>
+
+    <h2>3. Account Responsibilities</h2>
+    <p>You are responsible for maintaining the confidentiality of your account credentials and for all activity under your account. Notify us immediately of any unauthorized use.</p>
+
+    <h2>4. Acceptable Use</h2>
+    <p>You agree not to misuse the platform, attempt to gain unauthorized access to other accounts or systems, or use the service in violation of applicable laws.</p>
+
+    <h2>5. Service Availability</h2>
+    <p>We aim for high availability but do not guarantee uninterrupted access. Scheduled maintenance and unforeseen outages may occasionally affect the dashboard or API.</p>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>EcoGrid AI's recommendations are advisory. Decisions to act on AI-generated recommendations (including maintenance or load-shifting actions) remain the responsibility of your organization.</p>
+
+    <h2>7. Changes to These Terms</h2>
+    <p>We may update these terms from time to time. Continued use of the platform after changes are posted constitutes acceptance of the revised terms.</p>
+
+    <h2>8. Contact</h2>
+    <p>Questions about these terms can be sent to <strong>hello@ecogrid.ai</strong> or via the <a href="{{ url_for('main.contact') }}">Contact page</a>.</p>
+  </div>
+</section>
+{% endblock %}

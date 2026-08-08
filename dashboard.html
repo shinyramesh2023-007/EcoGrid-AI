@@ -1,0 +1,237 @@
+{% extends "base.html" %}
+{% block title %}AI Dashboard — EcoGrid AI{% endblock %}
+{% block description %}A live working preview of the EcoGrid AI plant dashboard.{% endblock %}
+{% set active_page = 'dashboard' %}
+
+{% block content %}
+<header class="page-header" style="padding-bottom:40px;">
+  <div class="mesh-bg"><div class="mesh-blob g2"></div><div class="mesh-blob g1"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Live Preview</div>
+    <h1 class="page-h1">Your plant, on one screen</h1>
+    <p class="page-lead">
+      {% if user %}Welcome back, {{ user.full_name.split(' ')[0] }} — {% endif %}
+      A working preview of the EcoGrid AI dashboard — the same view your team sees every morning.
+    </p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="dash-shell reveal">
+      <div class="dash-topbar">
+        <div class="dash-dots"><span></span><span></span><span></span></div>
+        <div class="dash-title">EcoGrid AI · Plant Overview <span class="live-chip"><span class="dot"></span> LIVE</span></div>
+        <div class="dash-toolbar" style="margin-left:auto;">
+          <span class="mono" style="font-size:.72rem;color:#93A6BA;"><i class="fa-regular fa-clock"></i> <span id="liveClock"></span></span>
+          <a href="#" class="btn btn-sm btn-outline" style="color:#EAF2FB;border-color:rgba(255,255,255,0.16);" onclick="showToast('Report export is a demo feature in this build.', 'success'); return false;">
+            <i class="fa-solid fa-file-arrow-down"></i> Export
+          </a>
+        </div>
+      </div>
+
+      <div class="dash-grid">
+        <div class="dash-tile kpi-tile">
+          <div class="dash-tile-label">LIVE POWER DRAW</div>
+          <div class="dash-tile-value g" data-live-jitter="184.6" data-suffix=" kW" data-decimal="1">184.6 <span style="font-size:.7rem;">kW</span></div>
+        </div>
+        <div class="dash-tile kpi-tile">
+          <div class="dash-tile-label">MONTHLY SAVINGS</div>
+          <div class="dash-tile-value g">₹2.4L</div>
+        </div>
+        <div class="dash-tile kpi-tile">
+          <div class="dash-tile-label">CARBON EMISSION</div>
+          <div class="dash-tile-value b">6.1 <span style="font-size:.7rem;">t CO₂e</span></div>
+        </div>
+        <div class="dash-tile kpi-tile">
+          <div class="dash-tile-label">BATTERY LEVEL</div>
+          <div class="dash-tile-value a">78%</div>
+        </div>
+      </div>
+
+      <div class="dash-panel flow-panel" style="margin:0 20px 14px;">
+        <div class="dash-panel-head"><i class="fa-solid fa-diagram-project"></i> Real-Time Energy Flow</div>
+        <div class="flow-diagram">
+          <div class="flow-node solar"><i class="fa-solid fa-solar-panel"></i><span>Solar</span><b>{{ renewable.solar_kwh_today }} kWh</b></div>
+          <div class="flow-line"></div>
+          <div class="flow-node grid"><i class="fa-solid fa-tower-broadcast"></i><span>Grid</span><b>184.6 kW</b></div>
+          <div class="flow-line"></div>
+          <div class="flow-node battery"><i class="fa-solid fa-car-battery"></i><span>Battery</span><b>78%</b></div>
+          <div class="flow-line"></div>
+          <div class="flow-node load"><i class="fa-solid fa-industry"></i><span>Plant Load</span><b>212 kW</b></div>
+        </div>
+      </div>
+
+      <div class="ai-assistant" style="margin:0 20px 14px;">
+        <div class="ai-avatar"><i class="fa-solid fa-robot"></i></div>
+        <div>
+          <h5>EcoGrid AI Assistant <span class="ai-typing"><span></span><span></span><span></span></span></h5>
+          <p>Compressor B has been idle with no production load for 42 minutes — shifting its next cycle into the 12–3pm solar window would save an estimated ₹18,400 this month. Motor Bay 2's vibration signature also matches early-stage bearing wear; recommend inspection within 48 hours.</p>
+        </div>
+      </div>
+
+      <div class="dash-panels">
+        <div class="dash-panel">
+          <div class="dash-panel-head">Energy Usage — Last 7 Days (Line Chart)</div>
+          <canvas id="usageChart" height="150"></canvas>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-head">Solar Generation — Today (Bar Chart)</div>
+          <canvas id="solarChart" height="150"></canvas>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-head">Energy Mix (Pie Chart)</div>
+          <canvas id="mixChart" height="150"></canvas>
+        </div>
+      </div>
+
+      <div class="dash-panels" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="dash-panel">
+          <div class="dash-panel-head">Machine Health</div>
+          <ul class="status-list">
+            {% for m in machines %}
+            <li><span class="status-dot {{ m.status }}"></span> {{ m.name }} <span class="note">{{ m.note }}</span></li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-head">Predictive Maintenance Score</div>
+          <div class="score-ring-wrap">
+            <svg width="86" height="86" viewBox="0 0 86 86">
+              <circle cx="43" cy="43" r="36" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="8"/>
+              <circle cx="43" cy="43" r="36" fill="none" stroke="#00C853" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="226" stroke-dashoffset="18" transform="rotate(-90 43 43)"/>
+            </svg>
+            <div>
+              <div class="score-ring-num">96.2</div>
+              <div class="note" style="margin-left:0;">Plant health index</div>
+            </div>
+          </div>
+          <ul class="alert-list-d" style="margin-top:16px;">
+            <li><i class="fa-solid fa-triangle-exclamation"></i> Motor Bay 2 — vibration threshold exceeded</li>
+          </ul>
+        </div>
+        <div class="dash-panel">
+          <div class="dash-panel-head">AI Alerts &amp; Recent Reports</div>
+          <ul class="alert-list-d">
+            <li><i class="fa-solid fa-circle-info"></i> Compressor B idle for 42 min</li>
+            {% for r in reports %}
+            <li><i class="fa-solid {{ 'fa-file-pdf' if r.type == 'carbon' else 'fa-check' }}" style="color:{{ '#6FA8F0' if r.type == 'carbon' else 'var(--green)' }}"></i> {{ r.title }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <div class="dash-panel" style="margin:0 20px 14px;">
+        <div class="dash-panel-head"><i class="fa-solid fa-wave-square"></i> Live Power Quality</div>
+        <div class="sensor-grid">
+          <div class="sensor-item"><div class="v"><span class="sensor-live-dot"></span>415V</div><div class="l">Voltage</div></div>
+          <div class="sensor-item"><div class="v">268A</div><div class="l">Current</div></div>
+          <div class="sensor-item"><div class="v">50.0Hz</div><div class="l">Frequency</div></div>
+        </div>
+      </div>
+
+      <div class="widget-row">
+        <div class="mini-widget">
+          <div class="mini-widget-head"><i class="fa-solid fa-cloud-sun"></i> WEATHER — KOCHI</div>
+          <div class="mini-widget-value">29°C</div>
+          <div class="mini-widget-sub">Partly cloudy · good solar window</div>
+        </div>
+        <div class="mini-widget">
+          <div class="mini-widget-head"><i class="fa-solid fa-indian-rupee-sign"></i> ELECTRICITY PRICE</div>
+          <div class="mini-widget-value">₹7.80<span style="font-size:.65rem;color:#93A6BA;">/kWh</span></div>
+          <div class="mini-widget-sub">Peak window from 6–9pm</div>
+        </div>
+        <div class="mini-widget">
+          <div class="mini-widget-head"><i class="fa-solid fa-gauge"></i> EFFICIENCY SCORE</div>
+          <div class="mini-widget-value g">91.4</div>
+          <div class="mini-widget-sub">+2.1 vs last week</div>
+        </div>
+        <div class="mini-widget">
+          <div class="mini-widget-head"><i class="fa-solid fa-industry"></i> TODAY'S PRODUCTION</div>
+          <div class="mini-widget-value">1,240 <span style="font-size:.65rem;color:#93A6BA;">units</span></div>
+          <div class="mini-widget-sub">0.149 kWh / unit</div>
+        </div>
+      </div>
+
+      <div class="dash-section-label">Renewable Energy &amp; Carbon Impact</div>
+      <div class="renew-grid">
+        <div class="renew-tile">
+          <i class="fa-solid fa-solar-panel"></i>
+          <div class="dash-tile-label">SOLAR TODAY</div>
+          <div class="dash-tile-value g">{{ renewable.solar_kwh_today }} <span style="font-size:.65rem;">kWh</span></div>
+        </div>
+        <div class="renew-tile">
+          <i class="fa-solid fa-wind"></i>
+          <div class="dash-tile-label">WIND CONTRIBUTION</div>
+          <div class="dash-tile-value b">{{ renewable.wind_contribution_pct }} <span style="font-size:.65rem;">%</span></div>
+        </div>
+        <div class="renew-tile">
+          <i class="fa-solid fa-leaf"></i>
+          <div class="dash-tile-label">CO₂e AVOIDED (MTD)</div>
+          <div class="dash-tile-value g">{{ renewable.co2_avoided_tonnes }} <span style="font-size:.65rem;">tonnes</span></div>
+        </div>
+        <div class="renew-tile">
+          <i class="fa-solid fa-tree"></i>
+          <div class="dash-tile-label">EQUIVALENT TREES</div>
+          <div class="dash-tile-value a">{{ renewable.trees_equivalent }}</div>
+        </div>
+      </div>
+
+      <div class="dash-section-label">AI Energy-Saving Recommendations</div>
+      <div class="rec-grid">
+        <div class="rec-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <div>
+            <h5>Shift Compressor B load to 10am–2pm solar window</h5>
+            <p>Idle time detected outside solar peak hours; rescheduling cuts grid draw.</p>
+            <span class="rec-save">≈ ₹18,400 / month</span>
+          </div>
+        </div>
+        <div class="rec-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <div>
+            <h5>Service Motor Bay 2 bearing within 2 weeks</h5>
+            <p>Vibration signature matches early-stage bearing wear pattern.</p>
+            <span class="rec-save">Prevents ≈ 6 hrs downtime</span>
+          </div>
+        </div>
+        <div class="rec-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <div>
+            <h5>Stagger CNC Lathe startup sequence</h5>
+            <p>Simultaneous cold-starts create a demand spike that raises peak billing.</p>
+            <span class="rec-save">≈ ₹6,200 / month</span>
+          </div>
+        </div>
+        <div class="rec-card">
+          <i class="fa-solid fa-lightbulb"></i>
+          <div>
+            <h5>Increase battery charge window during solar surplus</h5>
+            <p>12pm–3pm solar output regularly exceeds current load — more can be stored.</p>
+            <span class="rec-save">≈ 9% more self-consumption</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-section-label">Abnormal Usage Alerts</div>
+      <div class="alert-cards">
+        {% for a in alerts %}
+        <div class="alert-card {{ a.severity }}">
+          <i class="fa-solid {{ 'fa-triangle-exclamation' if a.severity == 'crit' else ('fa-clock' if a.severity == 'warn' else 'fa-bolt') }}"></i>
+          <div><h5>{{ a.title }}</h5><p>{{ a.description }}</p></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script>
+  window.ECOGRID_USAGE = {{ usage|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dashboard-charts.js') }}"></script>
+{% endblock %}

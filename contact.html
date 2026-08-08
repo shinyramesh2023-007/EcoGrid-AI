@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Contact — EcoGrid AI{% endblock %}
+{% block description %}Get in touch with the EcoGrid AI team to book a demo or ask a question.{% endblock %}
+{% set active_page = 'contact' %}
+
+{% block content %}
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g1"></div><div class="mesh-blob g2"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Contact</div>
+    <h1 class="page-h1">Let's put your machines on the grid</h1>
+    <p class="page-lead">Tell us about your plant and we'll set up a pilot on a small number of machines — usually within a week.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container contact-grid">
+    <form class="contact-form glass reveal" id="contactForm" method="POST" action="{{ url_for('main.contact') }}" novalidate>
+      {{ form.hidden_tag() }}
+      <div class="form-alert{% if form.errors %} show error{% endif %}" id="formAlert" role="alert">
+        {% if form.errors %}Please fix the highlighted fields before sending.{% endif %}
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          {{ form.name(id="name", placeholder="Your name", class_="invalid" if form.name.errors else "") }}
+          <span class="field-error{% if form.name.errors %} show{% endif %}" id="nameError">{{ form.name.errors[0] if form.name.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          {{ form.company(id="company", placeholder="Company name") }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">Email</label>
+          {{ form.email(id="email", placeholder="you@company.com", class_="invalid" if form.email.errors else "") }}
+          <span class="field-error{% if form.email.errors %} show{% endif %}" id="emailError">{{ form.email.errors[0] if form.email.errors }}</span>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          {{ form.phone(id="phone", placeholder="+91 00000 00000", class_="invalid" if form.phone.errors else "") }}
+          <span class="field-error{% if form.phone.errors %} show{% endif %}" id="phoneError">{{ form.phone.errors[0] if form.phone.errors }}</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group full">
+          <label for="message">Message</label>
+          {{ form.message(id="message", rows="5", placeholder="Tell us about your plant", class_="invalid" if form.message.errors else "") }}
+          <span class="field-error{% if form.message.errors %} show{% endif %}" id="messageError">{{ form.message.errors[0] if form.message.errors }}</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+        Send Message <i class="fa-solid fa-paper-plane"></i>
+      </button>
+    </form>
+
+    <div class="contact-info glass reveal d1">
+      <div class="info-row"><i class="fa-solid fa-envelope"></i><span>hello@ecogrid.ai</span></div>
+      <div class="info-row"><i class="fa-solid fa-phone"></i><span>+91 98765 43210</span></div>
+      <div class="info-row"><i class="fa-solid fa-location-dot"></i><span>4th Floor, Infopark Campus, Kochi, Kerala, India</span></div>
+      <div class="social-row">
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+      <div class="map-box">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span>Map preview — embed Google Maps here</span>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

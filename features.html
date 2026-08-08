@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Features — EcoGrid AI{% endblock %}
+{% block description %}Everything EcoGrid AI monitors, predicts and recommends across your plant.{% endblock %}
+{% set active_page = 'features' %}
+
+{% block content %}
+<header class="page-header">
+  <div class="mesh-bg"><div class="mesh-blob g1"></div><div class="mesh-blob g3"></div></div>
+  <div class="container reveal">
+    <div class="eyebrow"><span class="dot"></span> Platform</div>
+    <h1 class="page-h1">Everything the shop floor needed and never had</h1>
+    <p class="page-lead">A single platform for monitoring, analytics and action — built for the realities of industrial power.</p>
+  </div>
+</header>
+
+<section style="padding-top:0;">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+        <h3>Real-Time Monitoring</h3>
+        <p>Machine-level power readings updated every few seconds, not once a month on a bill.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+        <h3>AI Prediction</h3>
+        <p>Pattern-recognition models surface waste and anomalies humans would never spot manually.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-satellite-dish"></i></div>
+        <h3>IoT Sensor Integration</h3>
+        <p>Clamp-on sensors on ESP32/NodeMCU hardware — no rewiring, no downtime.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-solar-panel"></i></div>
+        <h3>Renewable Energy Management</h3>
+        <p>Track solar generation and battery storage alongside grid draw.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-leaf"></i></div>
+        <h3>Carbon Tracking</h3>
+        <p>Automatic kWh-to-CO₂e conversion, ready for ESG and compliance reporting.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-power-off"></i></div>
+        <h3>Idle Machine Detection</h3>
+        <p>Catches equipment left running with no load — a top source of silent waste.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-bell"></i></div>
+        <h3>Smart Alerts</h3>
+        <p>Instant SMS, email or app alerts the moment a machine drifts outside safe range.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-gears"></i></div>
+        <h3>Predictive Maintenance</h3>
+        <p>Vibration and load signatures flag failing bearings weeks before breakdown.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-cloud"></i></div>
+        <h3>Cloud Analytics</h3>
+        <p>Secure dashboard access from any device — plant floor, office, or on the move.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>AI Recommendation Engine</h3>
+        <p>Ranked, plain-language actions with the projected rupee savings for each one.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-sliders"></i></div>
+        <h3>Renewable Optimization</h3>
+        <p>Shift flexible loads to match solar availability and cut peak-hour grid draw.</p>
+      </div>
+      <div class="feature-card glass glow-border reveal">
+        <div class="feature-icon"><i class="fa-solid fa-file-lines"></i></div>
+        <h3>Automated Reports</h3>
+        <p>Daily, weekly and monthly summaries delivered straight to your inbox.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-alt">
+  <div class="container">
+    <div class="cta-banner reveal">
+      <div>
+        <h2>Want to see these features on real plant data?</h2>
+        <p>The AI dashboard page shows a live working preview of exactly what your team would see.</p>
+      </div>
+      <a href="{{ url_for('dashboard.index') }}" class="btn btn-primary">View Dashboard <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+{% endblock %}
