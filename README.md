@@ -1,100 +1,188 @@
-# EcoGrid AI — AI-Powered Energy Optimization Platform for MSMEs
+# 🌱 EcoGrid AI
 
-A full-stack Flask website: premium marketing site + live-preview SaaS dashboard +
-working authentication, built on top of your original static HTML/CSS/JS design.
+### AI-Powered Energy Optimization Platform for MSMEs
 
-## Quick Start
+> **Monitor. Analyze. Optimize. Sustain.**
+
+EcoGrid AI is an intelligent energy management platform that combines **AI, IoT, data analytics, and renewable energy monitoring** to help MSMEs monitor energy consumption, identify inefficiencies, and make smarter energy decisions.
+
+## 🌐 Live Website
+
+### 🚀 [Visit EcoGrid AI →](https://ecogrid-ai.onrender.com)
+
+---
+
+## 📌 Overview
+
+Energy inefficiency is a major challenge for many MSMEs. EcoGrid AI provides a centralized platform to monitor energy consumption, machine health, renewable energy contribution, and important alerts.
+
+The platform transforms energy data into meaningful insights and recommendations to help businesses **reduce energy waste, improve efficiency, and make better operational decisions**.
+
+---
+
+## ✨ Key Features
+
+* 📊 **Energy Monitoring** — Track and visualize energy consumption.
+* 🤖 **AI Recommendations** — Get intelligent energy-saving suggestions.
+* 🏭 **Machine Health** — Monitor machine operating status.
+* 🚨 **Smart Alerts** — Identify abnormal or high energy usage.
+* ☀️ **Solar Monitoring** — Track solar energy contribution.
+* 🌬️ **Wind Monitoring** — Visualize wind energy contribution.
+* 🌊 **Tidal Monitoring** — Track tidal energy contribution.
+* 📈 **Interactive Dashboard** — View energy, renewable, machine, and alert data.
+* 🔐 **Authentication** — Secure registration and login.
+
+---
+
+## ⚡ How It Works
+
+```text
+Energy Sources / Smart Meters
+            ↓
+       Energy Data
+            ↓
+      Flask Backend
+            ↓
+     SQLite / MySQL
+            ↓
+   Analytics & AI Logic
+            ↓
+ Insights • Alerts • Recommendations
+            ↓
+    Energy Optimization
+```
+
+---
+
+## 🛠️ Technology Stack
+
+* **Frontend:** HTML, CSS, JavaScript, Chart.js
+* **Backend:** Python, Flask
+* **Database:** SQLite / MySQL
+* **Authentication:** Flask-Login
+* **Security:** Flask-WTF, CSRF Protection
+* **Deployment:** Render
+
+---
+
+## 📁 Project Structure
+
+```text
+EcoGrid-AI/
+├── blueprints/     # Application routes
+├── static/         # CSS & JavaScript
+├── templates/      # HTML/Jinja templates
+├── instance/       # Local database
+├── app.py          # Flask entry point
+├── models.py       # Database models
+├── forms.py        # Form validation
+├── config.py       # Configuration
+└── requirements.txt
+```
+
+---
+
+## 🚀 Run Locally
+
+### Clone the repository
 
 ```bash
+git clone https://github.com/shinyramesh2023-007/EcoGrid-AI.git
+```
+
+### Install dependencies
+
+```bash
+cd EcoGrid-AI
 pip install -r requirements.txt
+```
+
+### Start the application
+
+```bash
 python app.py
 ```
 
-Then open **http://localhost:5000** in your browser. That's it — no database
-setup required. A local SQLite file is created automatically at
-`instance/ecogrid.db` on first run, pre-seeded with demo dashboard data.
+Open:
 
-## What's Included
-
-**Pages:** Home, About, Features, Dashboard, Technologies, Contact, Login,
-Register, Privacy Policy, Terms of Service, and a custom 404/500 error page.
-
-**Design upgrades over the original static site:**
-- Dark mode toggle (top-right of the navbar, persists via localStorage)
-- FAQ accordion, testimonials, and trusted-partners strip on the homepage
-- Login / Register pages with password strength meter and show/hide toggle
-- Toast notifications for form submissions, login/logout, etc.
-- All original glassmorphism, animations, scroll-reveal, counters, and
-  Chart.js dashboard visuals are preserved exactly as they were.
-
-**Backend (new):**
-- Flask app factory (`app.py`) with blueprints: `main`, `auth`, `dashboard`
-- SQLAlchemy models: `User`, `ContactMessage`, `EnergyUsage`, `MachineStatus`,
-  `RenewableEnergy`, `Alert`, `Report`
-- Flask-Login session auth with hashed passwords (Werkzeug)
-- Flask-WTF forms with CSRF protection and server-side validation on
-  Register, Login, and Contact
-- The dashboard's Machine Health, Alerts, Renewable stats, and the "Energy
-  Usage" line chart are all rendered from the database (see `_seed_demo_data()`
-  in `app.py`), not hardcoded — ready for a real IoT feed later
-- `/api/dashboard/summary` — JSON endpoint returning the same dashboard data
-
-## Switching to MySQL (optional)
-
-The app uses SQLite by default so it runs with zero setup. To use MySQL instead:
-
-1. `pip install PyMySQL` (already listed, commented out, in `requirements.txt`)
-2. Run `database.sql` against your MySQL server: `mysql -u root -p < database.sql`
-3. Copy `.env.example` to `.env` and set:
-   ```
-   DATABASE_URL=mysql+pymysql://ecogrid_user:your_password@localhost/ecogrid_db
-   ```
-4. Run `python app.py` again.
-
-## Project Structure
-
-```
-app.py                  # Flask entrypoint (app factory + seed data)
-config.py               # Settings (reads .env)
-extensions.py           # db / login_manager / csrf instances
-models.py               # SQLAlchemy models
-forms.py                # WTForms (Login, Register, Contact)
-requirements.txt
-database.sql            # Optional MySQL schema
-.env.example            # Copy to .env for production settings
-blueprints/
-  main.py               # Home, About, Features, Technologies, Contact, Privacy, Terms
-  auth.py                # Register, Login, Logout
-  dashboard.py           # Dashboard page + JSON API
-templates/               # Jinja templates (base.html + one per page)
-static/
-  css/style.css
-  js/script.js           # Dark mode, FAQ accordion, nav, forms, reveal/counters
-  js/dashboard-charts.js  # Chart.js setup, fed by DB data
-instance/
-  ecogrid.db             # Auto-created SQLite file (git-ignore this in production)
+```text
+http://localhost:5000
 ```
 
-## Verified Before Delivery
+---
 
-Every route was tested end-to-end with Flask's test client:
-- All 10 pages return 200, all internal links resolve, 404 page works
-- Contact form: CSRF token present, validation errors + success flash both work
-- Register: creates a user, hashes the password, rejects duplicate emails,
-  rejects mismatched passwords, logs the user in and redirects to /dashboard
-- Login: accepts correct credentials, rejects wrong password with a clear message
-- Logout clears the session
-- Dashboard renders Machine Health, Alerts, and Renewable stats from the
-  database (not hardcoded), and the Chart.js line chart uses seeded DB rows
-- Both JS files pass `node --check` with no syntax errors
-- No leftover Jinja `{{ }}` / `{% %}` markup in any rendered page
+## 🔌 API
 
-## Notes
+The dashboard provides a JSON API endpoint:
 
-- Change `SECRET_KEY` in `.env` before deploying publicly.
-- The public `/dashboard` page is intentionally viewable without login (as in
-  your original design) so it works as a live marketing preview; it also
-  personalizes its greeting if you are logged in.
-- The "Export" button, "Forgot password", and newsletter subscribe are wired
-  as clearly-labeled demo actions (toast notification) — hook these up to a
-  real PDF export, email provider, or password-reset flow when you're ready.
+```text
+/api/dashboard/summary
+```
+
+This provides a foundation for future IoT device and external-system integrations.
+
+---
+
+## 🎯 Project Objectives
+
+* Reduce unnecessary energy consumption.
+* Improve energy visibility for MSMEs.
+* Identify inefficient machine usage.
+* Monitor renewable energy contribution.
+* Provide actionable energy insights.
+* Support data-driven business decisions.
+* Enable future real-time IoT integration.
+
+---
+
+## 🔮 Future Scope
+
+* Real-time IoT sensor integration
+* Smart meter integration
+* Advanced energy forecasting
+* Predictive machine maintenance
+* Automated energy optimization
+* Real-time renewable energy monitoring
+* Mobile application
+* Advanced AI/ML models
+
+---
+
+## 🏭 Industry 4.0 & 5.0
+
+EcoGrid AI aligns with **Industry 4.0 and Industry 5.0** by combining:
+
+**AI • IoT • Data Analytics • Automation • Smart Monitoring • Sustainable Energy**
+
+The platform is designed to help MSMEs move toward smarter, more efficient, and sustainable energy management.
+
+---
+
+## 📈 Project Status
+
+🟢 **Working Prototype — Final-Year Project**
+
+The current version includes the core web platform, authentication, database integration, interactive dashboard, energy monitoring, renewable energy monitoring, machine health information, alerts, API integration, and cloud deployment.
+
+---
+
+## 👥 Developers
+
+| Developer     | GitHub                                                         |
+| ------------- | -------------------------------------------------------------- |
+| **Shiny-007** | [@shinyramesh2023-007](https://github.com/shinyramesh2023-007) |
+| **Resh-007**  | [@Resh-007](https://github.com/Resh-007)                       |
+
+---
+
+## 🔗 Project Links
+
+🌐 **Live Website:** [EcoGrid AI](https://ecogrid-ai.onrender.com)
+
+💻 **GitHub Repository:** [EcoGrid-AI](https://github.com/shinyramesh2023-007/EcoGrid-AI)
+
+---
+
+### 🌱 EcoGrid AI
+
+**Smarter Energy. Better Efficiency. Sustainable Future.**
